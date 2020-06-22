@@ -18,6 +18,11 @@ import { SharedModule } from "../../../shared/shared.module";
 import { FavouriteProductsComponent } from "./favourite-products/favourite-products.component";
 import { CartProductsComponent } from "./cart-products/cart-products.component";
 import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.component";
+import { PricesComponent } from "./prices/prices.component";
+import { AddPricesComponent } from "./add-prices/add-prices.component";
+import { UploaderComponent } from "../uploader/uploader.component";
+import { DropzoneDirective } from "../../directives/dropzone.directive";
+import { UploadTaskComponent } from "../upload-task/upload-task.component";
 
 @NgModule({
   imports: [
@@ -35,6 +40,11 @@ import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.compo
     FavouriteProductsComponent,
     CartProductsComponent,
     CartCalculatorComponent,
+    PricesComponent,
+    AddPricesComponent,
+    UploaderComponent,
+    DropzoneDirective,
+    UploadTaskComponent,
   ],
   exports: [BestProductComponent],
 })

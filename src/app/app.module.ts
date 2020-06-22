@@ -14,10 +14,12 @@ import { ProductModule } from "./views/pages/product/product.module";
 import { UserModule } from "./views/pages/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
+import { DropzoneDirective } from "./views/directives/dropzone.directive";
+import { UploadTaskComponent } from "./views/pages/upload-task/upload-task.component";
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService) {
-  return () => service.use("en");
+  return () => service.use("ru");
 }
 @NgModule({
   declarations: [AppComponent],

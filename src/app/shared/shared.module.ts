@@ -27,6 +27,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CdkTableModule } from "@angular/cdk/table";
 import { CdkTreeModule } from "@angular/cdk/tree";
 import { FireBaseConfig } from "./../../environments/firebase.config";
+import { UploadService } from "./services/upload.service";
 
 @NgModule({
   imports: [
@@ -81,6 +82,7 @@ import { FireBaseConfig } from "./../../environments/firebase.config";
     ProductService,
     UserService,
     FormBuilder,
+    UploadService,
   ],
 })
 export class SharedModule {}
