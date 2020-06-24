@@ -27,7 +27,9 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CdkTableModule } from "@angular/cdk/table";
 import { CdkTreeModule } from "@angular/cdk/tree";
 import { FireBaseConfig } from "./../../environments/firebase.config";
-import { UploadService } from "./services/upload.service";
+import { FileService } from "./services/file.service";
+import { PriceService } from "./services/price.services";
+import { TableSortableComponent } from "./elements/table-sortable/table-sortable.component";
 
 @NgModule({
   imports: [
@@ -51,9 +53,11 @@ import { UploadService } from "./services/upload.service";
     TranslatePipe,
     CardLoaderComponent,
     MomentTimeAgoPipe,
+    TableSortableComponent,
   ],
   exports: [
     NoProductsFoundComponent,
+    TableSortableComponent,
     FormsModule,
     MDBBootstrapModule,
     AngularFireModule,
@@ -82,7 +86,8 @@ import { UploadService } from "./services/upload.service";
     ProductService,
     UserService,
     FormBuilder,
-    UploadService,
+    FileService,
+    PriceService,
   ],
 })
 export class SharedModule {}

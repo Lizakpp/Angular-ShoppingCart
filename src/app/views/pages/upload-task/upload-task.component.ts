@@ -6,6 +6,9 @@ import {
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 import { finalize, tap } from "rxjs/operators";
+import { FileService } from "src/app/shared/services/file.service";
+import { PriceService } from "src/app/shared/services/price.services";
+import { Price } from "src/app/shared/models/price";
 
 @Component({
   selector: "upload-task",
@@ -14,26 +17,37 @@ import { finalize, tap } from "rxjs/operators";
 })
 export class UploadTaskComponent implements OnInit {
   @Input() file: File;
-
+  @Input() pathToBucket: string;
+  @Input() descriptionFile: string;
   task: AngularFireUploadTask;
-
+  storage = null;
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
 
   constructor(
-    private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private fstorage: FileService,
+    private db: AngularFirestore,
+    private priceService: PriceService
   ) {}
 
   ngOnInit() {
+    console.log(
+      "TASK pathToBucket :>> ",
+      this.pathToBucket,
+      this.descriptionFile,
+      this.file
+    );
+    this.storage = this.fstorage.getStorage();
     this.startUpload();
   }
 
   startUpload() {
-    // The storage path
-    const path = `test/${Date.now()}_${this.file.name}`;
-
+    const priceInfo = {} as Price;
+    const path = `${this.pathToBucket}/${Date.now()}_${this.file.name}`;
+    priceInfo.category = this.pathToBucket;
+    priceInfo.fileName = this.file.name;
+    priceInfo.description = this.descriptionFile;
     // Reference to storage bucket
     const ref = this.storage.ref(path);
 
@@ -48,7 +62,8 @@ export class UploadTaskComponent implements OnInit {
       // The file"s download URL
       finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-
+        priceInfo.urlFile = this.downloadURL;
+        this.priceService.createPrice(priceInfo);
         this.db
           .collection("files")
           .add({ downloadURL: this.downloadURL, path });

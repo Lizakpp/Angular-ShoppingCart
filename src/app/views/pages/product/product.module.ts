@@ -23,6 +23,7 @@ import { AddPricesComponent } from "./add-prices/add-prices.component";
 import { UploaderComponent } from "../uploader/uploader.component";
 import { DropzoneDirective } from "../../directives/dropzone.directive";
 import { UploadTaskComponent } from "../upload-task/upload-task.component";
+import { TableSortableDirective } from "../../directives/table-sortable.directive";
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { UploadTaskComponent } from "../upload-task/upload-task.component";
     UploaderComponent,
     DropzoneDirective,
     UploadTaskComponent,
+    TableSortableDirective,
   ],
   exports: [BestProductComponent],
 })

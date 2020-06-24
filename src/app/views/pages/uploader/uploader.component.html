@@ -1,16 +1,40 @@
 <div
   class="dropzone"
-  dropzone
+  app-dropzone
   (hovered)="toggleHover($event)"
   (dropped)="onDrop($event)"
   [class.hovering]="isHovering"
 >
-  <h3>AngularFire Drop Zone</h3>
-  <p>Drag and Drop a File</p>
+  <form class="upload__container">
+    <textarea
+      name="message"
+      #message="ngModel"
+      cols="30"
+      rows="5"
+      [(ngModel)]="descriptionFile"
+      placeholder="{{ this.translate.data['TextAreaDescription'] | translate }}"
+    ></textarea>
+    <select
+      name="selectedQuantity"
+      id="aantal"
+      class="form-control"
+      [(ngModel)]="pathToBucket"
+    >
+      <option *ngFor="let option of options" [value]="option">{{
+        this.translate.data[option] | translate
+      }}</option>
+    </select>
+    <div>{{ this.translate.data["DRAG_DROP"] | translate }}</div>
+    <input type="file" (change)="onChange($event)" />
+  </form>
+
+  <!-- <button (click)="save()">Save</button> -->
 </div>
 
-<h3>Uploads</h3>
-
 <div *ngFor="let file of files">
-  <upload-task [file]="file"></upload-task>
+  <upload-task
+    [file]="file"
+    [pathToBucket]="pathToBucket"
+    [descriptionFile]="descriptionFile"
+  ></upload-task>
 </div>

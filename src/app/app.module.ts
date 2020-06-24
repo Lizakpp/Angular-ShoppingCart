@@ -14,8 +14,7 @@ import { ProductModule } from "./views/pages/product/product.module";
 import { UserModule } from "./views/pages/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
-import { DropzoneDirective } from "./views/directives/dropzone.directive";
-import { UploadTaskComponent } from "./views/pages/upload-task/upload-task.component";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 /* to load and set en.json as the default application language */
 export function setupTranslateFactory(service: TranslateService) {
@@ -26,6 +25,8 @@ export function setupTranslateFactory(service: TranslateService) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     IndexModule,
     ProductModule,
